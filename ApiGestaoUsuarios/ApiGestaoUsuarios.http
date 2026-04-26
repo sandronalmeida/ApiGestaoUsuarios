@@ -1,0 +1,80 @@
+@ApiGestaoUsuarios_HostAddress = http://localhost:5231
+
+### Listar todos os endpoints disponíveis
+GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/endpoints
+Accept: application/json
+
+###
+
+### Listar todos os usuários
+GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/usuarios
+Accept: application/json
+
+###
+
+### Listar apenas usuários ativos
+GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/UsuariosAtivos
+Accept: application/json
+
+###
+
+### Buscar usuário por ID
+GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/d0034491-7f40-49da-aafc-f1c4199c0728
+Accept: application/json
+
+###
+
+### Buscar usuário por Email
+GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/joao@email.com
+Accept: application/json
+
+###
+
+### Criar novo usuário
+POST {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/usuario
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "senha": "123456"
+}
+
+###
+
+### Atualizar usuário existente
+PATCH {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/atualizar/d0034491-7f40-49da-aafc-f1c4199c0728
+Content-Type: application/json
+
+{
+  "nome": "João Atualizado",
+  "email": "joao.novo@email.com"
+}
+
+###
+
+### Desativar usuário
+PATCH {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/desativar/d0034491-7f40-49da-aafc-f1c4199c0728
+Accept: application/json
+
+###
+
+### Gerar usuários fake (Bogus)
+GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/UsuariosFake?quantidade=20
+Accept: application/json
+
+###
+
+### Operação autenticada
+POST {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/operacao-autenticada
+Content-Type: application/json
+
+{
+  "email": "joao.novo@email.com",
+  "senha": "123456"
+}
+
+###
+### Operação para Apagar todos os registros do Banco de Dados
+ Delete {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/ApagarTodosRegistros
+       
