@@ -1,35 +1,47 @@
 @ApiGestaoUsuarios_HostAddress = http://localhost:5231
 
+# @name ListarEndpoints
+# Retorna metadados de todas as rotas registradas na API (Action, Controller, Parâmetros).
 ### Listar todos os endpoints disponíveis
 GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/endpoints
 Accept: application/json
 
 ###
 
+# @name ListarTodosUsuarios
+# Recupera a lista completa de usuários cadastrados no banco de dados.
 ### Listar todos os usuários
 GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/usuarios
 Accept: application/json
 
 ###
 
+# @name ListarUsuariosAtivos
+# Filtra e retorna apenas os usuários que possuem o status 'Ativo'.
 ### Listar apenas usuários ativos
 GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/UsuariosAtivos
 Accept: application/json
 
 ###
 
+# @name BuscarUsuarioPorId
+# Obtém os detalhes de um usuário específico através do seu GUID.
 ### Buscar usuário por ID
 GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/d0034491-7f40-49da-aafc-f1c4199c0728
 Accept: application/json
 
 ###
 
+# @name BuscarUsuarioPorEmail
+# Obtém os detalhes de um usuário específico através do seu endereço de e-mail.
 ### Buscar usuário por Email
 GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/joao@email.com
 Accept: application/json
 
 ###
 
+# @name CriarUsuario
+# Realiza o cadastro de um novo usuário. Retorna 201 Created em caso de sucesso.
 ### Criar novo usuário
 POST {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/usuario
 Content-Type: application/json
@@ -42,6 +54,8 @@ Content-Type: application/json
 
 ###
 
+# @name AtualizarUsuario
+# Atualiza parcialmente os dados (Nome/Email) de um usuário existente pelo ID.
 ### Atualizar usuário existente
 PATCH {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/atualizar/d0034491-7f40-49da-aafc-f1c4199c0728
 Content-Type: application/json
@@ -53,18 +67,24 @@ Content-Type: application/json
 
 ###
 
+# @name DesativarUsuario
+# Realiza a exclusão lógica do usuário, alterando seu status para inativo.
 ### Desativar usuário
 PATCH {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/Usuario/desativar/d0034491-7f40-49da-aafc-f1c4199c0728
 Accept: application/json
 
 ###
 
+# @name GerarUsuariosFake
+# Utiliza a biblioteca Bogus para popular a base de dados com usuários aleatórios para teste.
 ### Gerar usuários fake (Bogus)
 GET {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/UsuariosFake?quantidade=20
 Accept: application/json
 
 ###
 
+# @name OperacaoAutenticada
+# Simula uma operação que exige validação de e-mail e senha.
 ### Operação autenticada
 POST {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/operacao-autenticada
 Content-Type: application/json
@@ -75,6 +95,9 @@ Content-Type: application/json
 }
 
 ###
+
+# @name ApagarTudo
+# ATENÇÃO: Remove permanentemente todos os registros de usuários da base de dados.
 ### Operação para Apagar todos os registros do Banco de Dados
  Delete {{ApiGestaoUsuarios_HostAddress}}/api/v1/GestaoUsuarios/ApagarTodosRegistros
        
