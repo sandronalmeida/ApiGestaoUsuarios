@@ -6,8 +6,9 @@ using ApiGestaoUsuarios.Infraestructure.Serialization;
 using ApiGestaoUsuarios.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 using System.Text.Json.Serialization;
+using Serilog;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
