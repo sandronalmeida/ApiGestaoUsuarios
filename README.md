@@ -193,7 +193,7 @@ A aplicação implementa um mecanismo seguro para armazenamento e validação de
 
 Abaixo está a representação visual das camadas da aplicação:
 
-![Diagrama de Camadas](./diagrama-de-camadas.png)
+![Diagrama de Camadas](./Diagrama-de-Camadas.png)
 
 Fluxo:  
 Cliente → Controller → Serviço → Domínio → Infraestrutura → Banco de Dados → JSON
