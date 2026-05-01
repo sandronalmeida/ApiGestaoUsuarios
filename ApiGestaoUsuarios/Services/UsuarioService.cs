@@ -92,7 +92,7 @@ namespace ApiGestaoUsuarios.Services
         /// <returns>Objeto <see cref="UsuarioReadDto"/> se encontrado; caso contrário, null.</returns>
         public async Task<UsuarioReadDto?> BuscarUsuarioPorEmailAsync(string email)
         {
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
             if (usuario == null) return null;
 
             return new UsuarioReadDto
@@ -115,7 +115,7 @@ namespace ApiGestaoUsuarios.Services
         /// <exception cref="Exception">Lançada se o e-mail já estiver cadastrado.</exception>
         public async Task<UsuarioReadDto> CriarUsuarioAsync(UsuarioRequestDto request)
         {
-            if (await _context.Usuarios.AnyAsync(u => u.Email == request.Email))
+            if (await _context.Usuarios.AnyAsync(u => u.Email.ToLower() == request.Email.ToLower()))
                 throw new Exception("Email já cadastrado.");
 
             var senhaHash = _passwordHasher.Hash(request.Nome,request.Senha);
@@ -210,7 +210,7 @@ namespace ApiGestaoUsuarios.Services
                 var emailFake = faker.Internet.Email(nomeFake);
                 // Verifica se já existe usuário com mesmo nome ou email
                 var existe = await _context.Usuarios
-                    .AnyAsync(u => u.Nome == nomeFake || u.Email == emailFake);
+                    .AnyAsync(u => u.Nome.ToLower() == nomeFake.ToLower() || u.Email.ToLower() == emailFake.ToLower());
 
                 if (existe)
                 {
@@ -247,7 +247,7 @@ namespace ApiGestaoUsuarios.Services
         public async Task<(bool Success, string? ErrorMessage)> ExecutarOperacaoAsync(UsuarioRequestValidarDto dto)
         {
             var usuario = _context.Usuarios
-                .FirstOrDefault(u => u.Email.Equals(dto.Email));
+                .FirstOrDefault(u => u.Email.ToLower() == dto.Email.ToLower());
 
             if (usuario is null)
             {
